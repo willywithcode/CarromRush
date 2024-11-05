@@ -1,0 +1,24 @@
+﻿  GameMain.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\format(42): warning STL4038: The contents of <format> are available only with C++20 or later.
+D:\VulkanProject\CarromRush\CarromRush\DataFormat.h(50,53): warning C4275: non dll-interface struct 'DirectX::XMFLOAT2' used as base for dll-interface struct 'BanZ::VECTOR2'
+  (compiling source file 'GameMain.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\DirectXMath.h(582,12):
+      see declaration of 'DirectX::XMFLOAT2'
+      D:\VulkanProject\CarromRush\CarromRush\DataFormat.h(50,27):
+      see declaration of 'BanZ::VECTOR2'
+  
+D:\VulkanProject\CarromRush\CarromRush\DataFormat.h(89,53): warning C4275: non dll-interface struct 'DirectX::XMFLOAT3' used as base for dll-interface struct 'BanZ::VECTOR3'
+  (compiling source file 'GameMain.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\DirectXMath.h(659,12):
+      see declaration of 'DirectX::XMFLOAT3'
+      D:\VulkanProject\CarromRush\CarromRush\DataFormat.h(89,27):
+      see declaration of 'BanZ::VECTOR3'
+  
+D:\VulkanProject\CarromRush\CarromRush\DataFormat.h(129,53): warning C4275: non dll-interface struct 'DirectX::XMFLOAT4' used as base for dll-interface struct 'BanZ::VECTOR4'
+  (compiling source file 'GameMain.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um\DirectXMath.h(734,12):
+      see declaration of 'DirectX::XMFLOAT4'
+      D:\VulkanProject\CarromRush\CarromRush\DataFormat.h(129,27):
+      see declaration of 'BanZ::VECTOR4'
+  
+  CarromRush.vcxproj -> D:\VulkanProject\CarromRush\x64\Debug\CarromRush.exe
