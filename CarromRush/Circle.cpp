@@ -1,5 +1,6 @@
 #include "Circle.h"
-
+namespace BanZ
+{
 Circle::Circle() : radius(0.0f)
 {
 	this->position = BanZ::VECTOR2(0.0f, 0.0f);
@@ -42,4 +43,5 @@ void Circle::Render()
 
 void Circle::OnDestroy()
 {
+}
 }
