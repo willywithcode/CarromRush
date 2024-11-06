@@ -14,6 +14,7 @@ namespace BanZ {
 		void PushActor(ActorObject*);
 		void DestroyActor(ActorObject*);
 		void DestroyActors();
+		std::vector<ActorObject*> GetActors() { return actors; };
 	private:
 		std::vector<ActorObject*> actors;
 	};
