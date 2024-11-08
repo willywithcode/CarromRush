@@ -2,19 +2,30 @@
 #include "BanGame.h"
 #include "ActorManager.h"
 #include "Circle.h"
+#include"PhysicsEngine.h"
+#include "Border.h"
 using namespace BanZ;
 void maingame(const float& elapsedTime)
 {
 	ActorManager::getInstance()->Update(elapsedTime);
+	PhysicsEngine::getInstance()->ProcessCollision();
 }
 
 void sceneInit()
 {
 	ActorManager::getInstance()->Init();
-    Circle* circle1 = new Circle(50.0f, VECTOR2(0,0),VECTOR2(10,10));
+    Circle* circle1 = new Circle(50.0f, VECTOR2(300,300),VECTOR2(70,-10));
 	ActorManager::getInstance()->PushActor(circle1);
-    Circle* circle2 = new Circle(50.0f, VECTOR2(1280, 720), VECTOR2(-10, -10));
+    Circle* circle2 = new Circle(50.0f, VECTOR2(700, 300), VECTOR2(-70, 0));
     ActorManager::getInstance()->PushActor(circle2);
+	Border* border1 = new Border(VECTOR2(100, 360), VECTOR2(50, 600));
+	ActorManager::getInstance()->PushActor(border1);
+	Border* border2 = new Border(VECTOR2(1180, 360), VECTOR2(50, 600));
+	ActorManager::getInstance()->PushActor(border2);
+	Border* border3 = new Border(VECTOR2(640, 100), VECTOR2(1200, 50));
+	ActorManager::getInstance()->PushActor(border3);
+	Border* border4 = new Border(VECTOR2(640, 620), VECTOR2(1200, 50));
+	ActorManager::getInstance()->PushActor(border4);
 }
 
 void sceneRender()
