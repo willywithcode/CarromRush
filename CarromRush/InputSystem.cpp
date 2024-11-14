@@ -12,8 +12,6 @@ void BanZ::InputSystem::OnMouseDown()
 {
     auto banGame = BanGame::Get();
 	VECTOR2 mousePos = banGame->GetMousePosition();
-    float radius = 20.0f;
-    banGame->DrawCircle(mousePos, radius, 0, COLOR::GREEN);
 
     float distance = banGame->Length(mousePos - selectedCircle->GetPosition());
     if (distance <= selectedCircle->GetRadius())
@@ -41,7 +39,7 @@ void BanZ::InputSystem::OnMouseMove(VECTOR2& moveDirection)
 
     VECTOR2 reverseDragVector = -dragVector;
 	endDragPos = startDragPos+reverseDragVector;
-    banGame->DrawLine(startDragPos, endDragPos, 10.0f, 0, COLOR::GREEN);
+    banGame->DrawLine(selectedCircle->GetPosition(), endDragPos, 10.0f, 0, COLOR::GREEN);
 	moveDirection = banGame->Normalize(reverseDragVector);
 }
 
