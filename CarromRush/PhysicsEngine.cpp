@@ -2,7 +2,7 @@
 #include "Circle.h"
 #include <iostream>
 namespace BanZ {
-
+	
 	bool PhysicsEngine::CheckCollisionCircleVsCircle(const BanZ::VECTOR2& posCircle1, const BanZ::VECTOR2& posCircle2, const float& radiusCircle1, const float& radiusCircle2)
 	{
 		auto banGame = BanGame::Get();
@@ -28,7 +28,6 @@ namespace BanZ {
 
 		velocityCircle1 += collisionDir * (newV1 - v1);
 		velocityCircle2 += collisionDir * (newV2 - v2);
-
 	}
 	VECTOR2 FindNearestPointOnRectToCircle(const VECTOR2& circlePos, const VECTOR2& rectPos, const VECTOR2& rectEdge)
 	{
@@ -59,6 +58,9 @@ namespace BanZ {
 
 		return VECTOR2{ nearestX, nearestY };
 	}
+	VECTOR2 ApplyDeceleration(const VECTOR2& velocity, float deceleration, float elapsedTime) {
+		return velocity * (1 - deceleration * elapsedTime);
+	}
 	bool PhysicsEngine::CheckCollisionCircleVsBorder(const BanZ::VECTOR2& posCircle, const float& radiusCircle, const BanZ::VECTOR2& posBorder, const BanZ::VECTOR2& borderEdge,VECTOR2& collisionNormal)
 	{
 		VECTOR2 nearestPoint = FindNearestPointOnRectToCircle(posCircle, posBorder, borderEdge);
@@ -76,6 +78,8 @@ namespace BanZ {
 	{
 		float dotProduct = BanGame::Get()->Dot(velocityCircle, collisionNormal);
 		velocityCircle = velocityCircle- collisionNormal * (2 * dotProduct);
+
+		velocityCircle *=(1-collidedDecelerationSpeed);
 	}
 	void PhysicsEngine::ProcessCollision()
 	{
@@ -91,11 +95,11 @@ namespace BanZ {
 			else if (auto border = dynamic_cast<Border*>(actor))
 				borders.push_back(border);
 		}
-		CheckCircleVsCircleCollisions(circles);
+		HandleCircleVsCircleCollisions(circles);
 	
-		CheckCircleVsBorderCollisions(circles, borders);
+		HandleCircleVsBorderCollisions(circles, borders);
 	}
-	void PhysicsEngine::CheckCircleVsCircleCollisions(const std::vector<Circle*>& circles)
+	void PhysicsEngine::HandleCircleVsCircleCollisions(const std::vector<Circle*>& circles)
 	{
 		for (int i = 0; i < circles.size(); i++)
 		{
@@ -113,7 +117,7 @@ namespace BanZ {
 			}
 		}
 	}
-	void PhysicsEngine::CheckCircleVsBorderCollisions(const std::vector<Circle*>& circles, const std::vector<Border*>& borders)
+	void PhysicsEngine::HandleCircleVsBorderCollisions(const std::vector<Circle*>& circles, const std::vector<Border*>& borders)
 	{
 		for (auto circle : circles)
 		{
@@ -126,5 +130,22 @@ namespace BanZ {
 				}
 			}
 		}
+
+	}
+	void PhysicsEngine::Update(const float& elapsedTime)
+	{
+		auto actorManager = ActorManager::getInstance();
+		auto actors = actorManager->GetActors();
+
+		for (auto actor : actors)
+		{
+			if (auto circle = dynamic_cast<Circle*>(actor))
+			{
+				VECTOR2 currentVelocity = circle->GetVelocity();
+				circle->SetVelocity(ApplyDeceleration(currentVelocity, fixedDecelerationSpeed, elapsedTime));
+			}
+		}
+
+		ProcessCollision();
 	}
 }
