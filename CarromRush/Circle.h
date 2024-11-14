@@ -22,9 +22,9 @@ namespace BanZ
 		void OnDestroy() override;
 		float GetRadius() { return radius; }
 		bool IsTriggered() { return isTriggered; }
+		void OnTriggeredEnter(ActorObject* actor) override;
 	protected:
 		float radius;
-		bool isTriggered;
 	};
 }
 
