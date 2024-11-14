@@ -5,6 +5,9 @@
 #include"PhysicsEngine.h"
 #include "Border.h"
 #include "InputSystem.h"
+#include "WhiteCoin.h"
+#include "BlackCoin.h"
+#include "Striker.h"
 using namespace BanZ;
 void maingame(const float& elapsedTime)
 {
@@ -16,21 +19,25 @@ void maingame(const float& elapsedTime)
 void sceneInit()
 {
 	ActorManager::getInstance()->Init();
-    Circle* circle1 = new Circle(20.0f, VECTOR2(300,300));
+    Circle* circle1 = new Striker(20.0f, VECTOR2(300,300));
 	ActorManager::getInstance()->PushActor(circle1);
 	InputSystem::getInstance()->SetSelectedCircle(circle1);
 
     VECTOR2 startPos(700, 300);
     float distance = 40.0f;
 
-    int rows = 5; 
+    int rows = 4; 
     int index = 0;
+	bool isBlack = false;
     for (int i = 0; i < rows; ++i) {
         int numCircles = i + 1; 
         float offsetX = -distance * (numCircles - 1) / 2.0f;
         for (int j = 0; j < numCircles; ++j) {
             VECTOR2 pos = startPos + VECTOR2(offsetX + j * distance, i * distance);
-            Circle* circle = new Circle(20.0f, pos);
+			Circle* circle = nullptr;
+			if (isBlack) circle = new BlackCoin(20.0f, pos);
+			else circle = new WhiteCoin(20.0f, pos);
+			isBlack = !isBlack;
             ActorManager::getInstance()->PushActor(circle);
         }
     }

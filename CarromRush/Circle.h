@@ -15,7 +15,7 @@ namespace BanZ
 
 		void Init() override;
 		void Update(const float& elapsedTime) override;
-		void Render() override;
+		void virtual Render() override;
 		void OnDestroy() override;
 		float GetRadius() { return radius; }
 	private:

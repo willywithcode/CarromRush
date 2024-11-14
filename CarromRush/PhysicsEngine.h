@@ -6,7 +6,7 @@ namespace BanZ
 {
 	class PhysicsEngine : public BanZ::SingletonTemplate<PhysicsEngine>
 	{
-		float fixedDecelerationSpeed = 0.1f; 
+		float fixedDecelerationSpeed = 0.7f; 
 		float collidedDecelerationSpeed = 0.05f; 
 	public: 
 		void Update(const float& elapsedTime);
