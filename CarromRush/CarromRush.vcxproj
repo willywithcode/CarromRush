@@ -130,17 +130,27 @@
     <ClInclude Include="ActorManager.h" />
     <ClInclude Include="ActorObject.h" />
     <ClInclude Include="BanGame.h" />
+    <ClInclude Include="BlackCoin.h" />
+    <ClInclude Include="Border.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="DataFormat.h" />
+    <ClInclude Include="InputSystem.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="SingletonTemplate.h" />
+    <ClInclude Include="Striker.h" />
+    <ClInclude Include="WhiteCoin.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActorManager.cpp" />
     <ClCompile Include="ActorObject.cpp" />
+    <ClCompile Include="BlackCoin.cpp" />
+    <ClCompile Include="Border.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
+    <ClCompile Include="Striker.cpp" />
+    <ClCompile Include="WhiteCoin.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
