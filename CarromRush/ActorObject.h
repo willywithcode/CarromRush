@@ -12,6 +12,8 @@ namespace BanZ
 		void virtual OnDestroy();
 		VECTOR2& GetPosition() { return position; }
 		VECTOR2& GetVelocity() { return velocity; }
+		void SetPosition(VECTOR2 position) { this->position = position; }
+		void SetVelocity(VECTOR2 velocity) { this->velocity = velocity; }
 		float GetMass() { return mass; }
 	protected:
 		VECTOR2 position;

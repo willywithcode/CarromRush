@@ -4,19 +4,22 @@
 #include "Circle.h"
 #include"PhysicsEngine.h"
 #include "Border.h"
+#include "InputSystem.h"
 using namespace BanZ;
 void maingame(const float& elapsedTime)
 {
 	ActorManager::getInstance()->Update(elapsedTime);
-	PhysicsEngine::getInstance()->ProcessCollision();
+	PhysicsEngine::getInstance()->Update(elapsedTime);
+    InputSystem::getInstance()->ProcessInput();
 }
 
 void sceneInit()
 {
 	ActorManager::getInstance()->Init();
-    Circle* circle1 = new Circle(50.0f, VECTOR2(300,300),VECTOR2(70,-10));
+    Circle* circle1 = new Circle(50.0f, VECTOR2(300,300));
 	ActorManager::getInstance()->PushActor(circle1);
-    Circle* circle2 = new Circle(50.0f, VECTOR2(700, 300), VECTOR2(-70, 0));
+	InputSystem::getInstance()->SetSelectedCircle(circle1);
+    Circle* circle2 = new Circle(50.0f, VECTOR2(700, 300));
     ActorManager::getInstance()->PushActor(circle2);
 	Border* border1 = new Border(VECTOR2(100, 360), VECTOR2(50, 600));
 	ActorManager::getInstance()->PushActor(border1);
