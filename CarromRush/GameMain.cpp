@@ -11,7 +11,7 @@
 #include "Hole.h"
 #include "CarromBoard.h"
 using namespace BanZ;
-VECTOR2 screenSize = { 750, 750 };
+VECTOR2 screenSize = { 720.0f, 720.0f };
 void maingame(const float& elapsedTime)
 {
 	ActorManager::getInstance()->Update(elapsedTime);
@@ -21,9 +21,9 @@ void maingame(const float& elapsedTime)
 
 void sceneInit()
 {
-	float coinRadius = 30.0f;
+	float coinRadius = 15.0f;
 	ActorManager::getInstance()->Init();
-    Circle* circle1 = new Striker(coinRadius, VECTOR2(300,300));
+    Circle* circle1 = new Striker(25.0f, VECTOR2(300,100));
 
     // GameEngine todo 1
     auto temp = dynamic_cast<Striker*>(circle1);
@@ -33,7 +33,7 @@ void sceneInit()
 	ActorManager::getInstance()->PushActor(circle1);
 	InputSystem::getInstance()->SetSelectedCircle(circle1);
 
-    VECTOR2 startPos(700, 300);
+    VECTOR2 startPos(300, 300);
     float distance = coinRadius*2;
 
     int rows = 4; 
@@ -52,18 +52,18 @@ void sceneInit()
         }
     }
     
-	Border* border1 = new Border(VECTOR2(0, screenSize.y/2), VECTOR2(50, screenSize.y));
+	Border* border1 = new Border(VECTOR2(0, screenSize.y/2), VECTOR2(40, screenSize.y));
 	ActorManager::getInstance()->PushActor(border1);
-	Border* border2 = new Border(VECTOR2(screenSize.x, screenSize.y/2), VECTOR2(50, screenSize.y));
+	Border* border2 = new Border(VECTOR2(screenSize.x, screenSize.y/2), VECTOR2(40, screenSize.y));
 	ActorManager::getInstance()->PushActor(border2);
-	Border* border3 = new Border(VECTOR2(screenSize.x/2, 0), VECTOR2(screenSize.x, 50));
+	Border* border3 = new Border(VECTOR2(screenSize.x/2, 0), VECTOR2(screenSize.x, 40));
 	ActorManager::getInstance()->PushActor(border3);
-	Border* border4 = new Border(VECTOR2(screenSize.x/2, screenSize.y), VECTOR2(screenSize.x, 50));
+	Border* border4 = new Border(VECTOR2(screenSize.x/2, screenSize.y), VECTOR2(screenSize.x, 40));
 	ActorManager::getInstance()->PushActor(border4);
-    Circle* hole1 = new Hole(12.0f, VECTOR2(88, 902));        
-    Circle* hole2 = new Hole(12.0f, VECTOR2(88, 88));
-    Circle* hole3 = new Hole(12.0f, VECTOR2(902, 902));
-    Circle* hole4 = new Hole(12.0f, VECTOR2(902, 88));
+    Circle* hole1 = new Hole(8.0f, VECTOR2(71, 649));        
+    Circle* hole2 = new Hole(8.0f, VECTOR2(71, 71));
+    Circle* hole3 = new Hole(8.0f, VECTOR2(649, 649));
+    Circle* hole4 = new Hole(8.0f, VECTOR2(649, 71));
     ActorManager::getInstance()->PushActor(hole1);
     ActorManager::getInstance()->PushActor(hole2);
     ActorManager::getInstance()->PushActor(hole3);
