@@ -1,5 +1,6 @@
 ﻿#include "InputSystem.h"
 #include"iostream"
+#include "BanGame.h"
 BanZ::InputSystem::InputSystem()
 {
 	selectedCircle = nullptr;
@@ -10,9 +11,9 @@ BanZ::InputSystem::InputSystem()
 
 void BanZ::InputSystem::OnMouseDown()
 {
+	if (BanZ::BanGame::Get()->Length(this->selectedCircle->GetVelocity()) >= 1.0f) return;
     auto banGame = BanGame::Get();
 	VECTOR2 mousePos = banGame->GetMousePosition();
-
     float distance = banGame->Length(mousePos - selectedCircle->GetPosition());
     if (distance <= selectedCircle->GetRadius())
     {
@@ -24,8 +25,8 @@ void BanZ::InputSystem::OnMouseDown()
 
 void BanZ::InputSystem::OnMouseUp(const VECTOR2& moveDirection)
 {
+	if (BanZ::BanGame::Get()->Length(this->selectedCircle->GetVelocity()) >= 1.0f) return;
     isDragging = false;  
-	
     auto banGame = BanGame::Get();
 	float force = banGame->Length(startDragPos - endDragPos);
 	float scaledForce = (force / maxLine) * maxForce;
@@ -39,6 +40,7 @@ void BanZ::InputSystem::OnMouseUp(const VECTOR2& moveDirection)
 
 void BanZ::InputSystem::OnMouseMove(VECTOR2& moveDirection)
 {
+	if (BanZ::BanGame::Get()->Length(this->selectedCircle->GetVelocity()) >= 1.0f) return;
     auto banGame = BanGame::Get();
     VECTOR2 mousePos = banGame->GetMousePosition();
     VECTOR2 dragVector = mousePos - startDragPos;

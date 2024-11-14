@@ -8,7 +8,10 @@
 #include "WhiteCoin.h"
 #include "BlackCoin.h"
 #include "Striker.h"
+#include "Hole.h"
+#include "CarromBoard.h"
 using namespace BanZ;
+VECTOR2 screenSize = { 992.0f, 992.0f };
 void maingame(const float& elapsedTime)
 {
 	ActorManager::getInstance()->Update(elapsedTime);
@@ -18,13 +21,14 @@ void maingame(const float& elapsedTime)
 
 void sceneInit()
 {
+	float coinRadius = 30.0f;
 	ActorManager::getInstance()->Init();
-    Circle* circle1 = new Striker(20.0f, VECTOR2(300,300));
+    Circle* circle1 = new Striker(coinRadius, VECTOR2(300,300));
 	ActorManager::getInstance()->PushActor(circle1);
 	InputSystem::getInstance()->SetSelectedCircle(circle1);
 
     VECTOR2 startPos(700, 300);
-    float distance = 40.0f;
+    float distance = coinRadius*2;
 
     int rows = 4; 
     int index = 0;
@@ -35,30 +39,32 @@ void sceneInit()
         for (int j = 0; j < numCircles; ++j) {
             VECTOR2 pos = startPos + VECTOR2(offsetX + j * distance, i * distance);
 			Circle* circle = nullptr;
-			if (isBlack) circle = new BlackCoin(20.0f, pos);
-			else circle = new WhiteCoin(20.0f, pos);
+			if (isBlack) circle = new BlackCoin(coinRadius, pos);
+			else circle = new WhiteCoin(coinRadius, pos);
 			isBlack = !isBlack;
             ActorManager::getInstance()->PushActor(circle);
         }
     }
-
-	Border* border1 = new Border(VECTOR2(100, 360), VECTOR2(50, 600));
+    
+	Border* border1 = new Border(VECTOR2(0, screenSize.y/2), VECTOR2(50, screenSize.y));
 	ActorManager::getInstance()->PushActor(border1);
-	Border* border2 = new Border(VECTOR2(1180, 360), VECTOR2(50, 600));
+	Border* border2 = new Border(VECTOR2(screenSize.x, screenSize.y/2), VECTOR2(50, screenSize.y));
 	ActorManager::getInstance()->PushActor(border2);
-	Border* border3 = new Border(VECTOR2(640, 100), VECTOR2(1200, 50));
+	Border* border3 = new Border(VECTOR2(screenSize.x/2, 0), VECTOR2(screenSize.x, 50));
 	ActorManager::getInstance()->PushActor(border3);
-	Border* border4 = new Border(VECTOR2(640, 620), VECTOR2(1200, 50));
+	Border* border4 = new Border(VECTOR2(screenSize.x/2, screenSize.y), VECTOR2(screenSize.x, 50));
 	ActorManager::getInstance()->PushActor(border4);
-
-    Circle* hole1 = new Circle(25.0f, VECTOR2(150, 150),true);        
-    Circle* hole2 = new Circle(25.0f, VECTOR2(1130, 150),true);       
-    Circle* hole3 = new Circle(25.0f, VECTOR2(150, 570),true);        
-    Circle* hole4 = new Circle(25.0f, VECTOR2(1130, 570),true);      
+    Circle* hole1 = new Hole(12.0f, VECTOR2(88, 902));        
+    Circle* hole2 = new Hole(12.0f, VECTOR2(88, 88));
+    Circle* hole3 = new Hole(12.0f, VECTOR2(902, 902));
+    Circle* hole4 = new Hole(12.0f, VECTOR2(902, 88));
     ActorManager::getInstance()->PushActor(hole1);
     ActorManager::getInstance()->PushActor(hole2);
     ActorManager::getInstance()->PushActor(hole3);
     ActorManager::getInstance()->PushActor(hole4);
+
+	CarromBoard* board = new CarromBoard(screenSize.x, screenSize.y, screenSize/2);
+	ActorManager::getInstance()->PushActor(board);
 }
 
 void sceneRender()
@@ -73,8 +79,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_ int       nCmdShow)
 {
     auto banGame = BanGame::Get();
-    banGame->CreateGameWindow(hInstance, nCmdShow, L"Begin Game Programming", L"gamewindow", 1280, 720);
-    banGame->CreateCamera(1280, 720, 0.1f, 1000.f);
+    banGame->CreateGameWindow(hInstance, nCmdShow, L"Begin Game Programming", L"gamewindow", screenSize.x, screenSize.y);
+    banGame->CreateCamera(screenSize.x, screenSize.y, 0.1f, 1000.f);
 
     auto Init = std::bind(sceneInit);
     auto Update = std::bind(maingame, std::placeholders::_1);
