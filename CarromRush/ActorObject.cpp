@@ -4,6 +4,7 @@ namespace BanZ
 {
 	void ActorObject::Init()
 	{
+		angle = 0;
 	}
 
 	void ActorObject::Update(const float& elapsedTime)

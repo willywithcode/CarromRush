@@ -11,7 +11,7 @@
 #include "Hole.h"
 #include "CarromBoard.h"
 using namespace BanZ;
-VECTOR2 screenSize = { 992.0f, 992.0f };
+VECTOR2 screenSize = { 750, 750 };
 void maingame(const float& elapsedTime)
 {
 	ActorManager::getInstance()->Update(elapsedTime);
@@ -24,6 +24,12 @@ void sceneInit()
 	float coinRadius = 30.0f;
 	ActorManager::getInstance()->Init();
     Circle* circle1 = new Striker(coinRadius, VECTOR2(300,300));
+
+    // GameEngine todo 1
+    auto temp = dynamic_cast<Striker*>(circle1);
+    temp->LoadSprite("../Data/Images/cocai_fix.png");
+    temp->SetEffect(BanGame::Get()->CreateSprite("../Data/Images/cocai_effect_fix.png"));
+
 	ActorManager::getInstance()->PushActor(circle1);
 	InputSystem::getInstance()->SetSelectedCircle(circle1);
 
