@@ -1,6 +1,7 @@
 #pragma once
 #include "DataFormat.h"	
 #include "BanGame.h"
+#include <functional>
 namespace BanZ
 {
 	class ActorObject
@@ -15,9 +16,12 @@ namespace BanZ
 		void SetPosition(VECTOR2 position) { this->position = position; }
 		void SetVelocity(VECTOR2 velocity) { this->velocity = velocity; }
 		float GetMass() { return mass; }
+		void virtual OnTriggeredEnter(ActorObject*) {};
+		bool IsTriggered() { return isTriggered; }
 	protected:
 		VECTOR2 position;
 		VECTOR2 velocity;
 		float mass;
+		bool isTriggered;
 	};
 }

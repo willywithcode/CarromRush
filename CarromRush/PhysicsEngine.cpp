@@ -109,9 +109,20 @@ namespace BanZ {
 				auto circle2 = circles[j];
 				if (circle1 != nullptr && circle2 != nullptr)
 				{
-					if (CheckCollisionCircleVsCircle(circle1->GetPosition(), circle2->GetPosition(), circle1->GetRadius(), circle2->GetRadius()) && !circle1->IsTriggered() && !circle2->IsTriggered())
+					if (CheckCollisionCircleVsCircle(circle1->GetPosition(), circle2->GetPosition(), circle1->GetRadius(), circle2->GetRadius()))
 					{
-						HandleCollisionCircleVsCircle(circle1->GetPosition(), circle2->GetPosition(), circle1->GetVelocity(), circle2->GetVelocity(), circle1->GetRadius(), circle2->GetRadius(), circle1->GetMass(), circle2->GetMass());
+						if (!circle1->IsTriggered() && circle2->IsTriggered())
+						{
+							circle1->OnTriggeredEnter(circle2);
+						}
+						else
+						{
+							HandleCollisionCircleVsCircle(
+								circle1->GetPosition(), circle2->GetPosition(),
+								circle1->GetVelocity(), circle2->GetVelocity(),
+								circle1->GetRadius(), circle2->GetRadius(),
+								circle1->GetMass(), circle2->GetMass());
+						}
 					}
 				}
 			}

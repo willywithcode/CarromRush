@@ -1,6 +1,7 @@
 #pragma once
 #include "SingletonTemplate.h"
 #include "ActorObject.h"
+#include "Circle.h"
 #include <vector>
 namespace BanZ {
 	class ActorManager : public SingletonTemplate<ActorManager>
