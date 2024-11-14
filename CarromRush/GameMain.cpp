@@ -16,7 +16,7 @@ void maingame(const float& elapsedTime)
 void sceneInit()
 {
 	ActorManager::getInstance()->Init();
-    Circle* circle1 = new Circle(20.0f, VECTOR2(300,300));
+    Circle* circle1 = new Circle(20.0f, VECTOR2(300,300),false);
 	ActorManager::getInstance()->PushActor(circle1);
 	InputSystem::getInstance()->SetSelectedCircle(circle1);
 
@@ -30,7 +30,7 @@ void sceneInit()
         float offsetX = -distance * (numCircles - 1) / 2.0f;
         for (int j = 0; j < numCircles; ++j) {
             VECTOR2 pos = startPos + VECTOR2(offsetX + j * distance, i * distance);
-            Circle* circle = new Circle(20.0f, pos);
+            Circle* circle = new Circle(20.0f, pos,false);
             ActorManager::getInstance()->PushActor(circle);
         }
     }
@@ -44,14 +44,14 @@ void sceneInit()
 	Border* border4 = new Border(VECTOR2(640, 620), VECTOR2(1200, 50));
 	ActorManager::getInstance()->PushActor(border4);
 
-    /*Circle* hole1 = new Circle(25.0f, VECTOR2(150, 150));        
-    Circle* hole2 = new Circle(25.0f, VECTOR2(1130, 150));       
-    Circle* hole3 = new Circle(25.0f, VECTOR2(150, 570));        
-    Circle* hole4 = new Circle(25.0f, VECTOR2(1130, 570));      
+    Circle* hole1 = new Circle(25.0f, VECTOR2(150, 150),true);        
+    Circle* hole2 = new Circle(25.0f, VECTOR2(1130, 150),true);       
+    Circle* hole3 = new Circle(25.0f, VECTOR2(150, 570),true);        
+    Circle* hole4 = new Circle(25.0f, VECTOR2(1130, 570),true);      
     ActorManager::getInstance()->PushActor(hole1);
     ActorManager::getInstance()->PushActor(hole2);
     ActorManager::getInstance()->PushActor(hole3);
-    ActorManager::getInstance()->PushActor(hole4);*/
+    ActorManager::getInstance()->PushActor(hole4);
 }
 
 void sceneRender()
