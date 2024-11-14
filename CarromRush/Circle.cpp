@@ -1,4 +1,5 @@
 #include "Circle.h"
+#include "ActorManager.h"
 namespace BanZ
 {
 	Circle::Circle() : radius(0.0f)
@@ -6,6 +7,7 @@ namespace BanZ
 		this->position = BanZ::VECTOR2(0.0f, 0.0f);
 		this->velocity = BanZ::VECTOR2(0.0f, 0.0f);
 		this->mass = 1.0f;
+		this->isTriggered = false;
 	}
 
 	Circle::Circle(float radius)
@@ -85,5 +87,10 @@ namespace BanZ
 
 	void Circle::OnDestroy()
 	{
+	}
+	void Circle::OnTriggeredEnter(ActorObject* actor)
+	{
+		auto actorManager = ActorManager::getInstance();
+		actorManager->DestroyActor(this);
 	}
 }
