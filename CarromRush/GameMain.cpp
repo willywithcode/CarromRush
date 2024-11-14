@@ -19,7 +19,7 @@ void maingame(const float& elapsedTime)
 void sceneInit()
 {
 	ActorManager::getInstance()->Init();
-  Circle* circle1 = new Striker(20.0f, VECTOR2(300,300));
+    Circle* circle1 = new Striker(20.0f, VECTOR2(300,300));
 	ActorManager::getInstance()->PushActor(circle1);
 	InputSystem::getInstance()->SetSelectedCircle(circle1);
 

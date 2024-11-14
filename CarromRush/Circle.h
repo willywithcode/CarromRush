@@ -8,8 +8,11 @@ namespace BanZ
 	{
 	public:
 		Circle();
+		Circle(float radius);
 		Circle(float radius,bool isTriggered);
+		Circle(float radius, BanZ::VECTOR2 position);
 		Circle(float radius, BanZ::VECTOR2 position,bool isTriggered);
+		Circle(float radius, BanZ::VECTOR2 position, BanZ::VECTOR2 velocity);
 		Circle(float radius, BanZ::VECTOR2 position, BanZ::VECTOR2 velocity,bool isTriggered);
 		Circle(float radius, BanZ::VECTOR2 position, BanZ::VECTOR2 velocity, float mass, bool isTriggered);
 
