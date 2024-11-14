@@ -37,8 +37,8 @@ namespace BanZ
 
 	void BanZ::Border::Render()
 	{
-		ActorObject::Render();
-		BanGame::Get()->DrawRectangle(this->position, this->borderEdge, 0, COLOR::BLUE);
+		/*ActorObject::Render();
+		BanGame::Get()->DrawRectangle(this->position, this->borderEdge, 0, COLOR::BLUE);*/
 	}
 
 	void BanZ::Border::OnDestroy()

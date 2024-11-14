@@ -132,8 +132,10 @@
     <ClInclude Include="BanGame.h" />
     <ClInclude Include="BlackCoin.h" />
     <ClInclude Include="Border.h" />
+    <ClInclude Include="CarromBoard.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="DataFormat.h" />
+    <ClInclude Include="Hole.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="SingletonTemplate.h" />
@@ -145,8 +147,10 @@
     <ClCompile Include="ActorObject.cpp" />
     <ClCompile Include="BlackCoin.cpp" />
     <ClCompile Include="Border.cpp" />
+    <ClCompile Include="CarromBoard.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="Hole.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Striker.cpp" />

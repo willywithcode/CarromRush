@@ -22,7 +22,7 @@ namespace BanZ
 		void OnDestroy() override;
 		float GetRadius() { return radius; }
 		bool IsTriggered() { return isTriggered; }
-	private:
+	protected:
 		float radius;
 		bool isTriggered;
 	};

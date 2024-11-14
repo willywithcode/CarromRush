@@ -23,5 +23,5 @@ WhiteCoin::WhiteCoin(float radius, BanZ::VECTOR2 position, BanZ::VECTOR2 velocit
 void WhiteCoin::Render()
 {
 	auto game = BanZ::BanGame::Get();
-	game->DrawSprite(game->CreateSprite("../Data/Images/covang.png"), this->position,BanZ::VECTOR2(this->GetRadius(), this->GetRadius()) * 2, 0);
+	game->DrawSprite(game->CreateSprite("../Data/Images/covang_fix.png"), this->position,BanZ::VECTOR2(this->GetRadius(), this->GetRadius()) * 2, 0);
 }
