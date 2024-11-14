@@ -12,6 +12,8 @@ namespace BanZ
 			VECTOR2 startDragPos;
 			VECTOR2 endDragPos;
 			bool isDragging;
+			float maxForce = 500.0f;
+			float maxLine = 200.0f;
 		public:
 			InputSystem();
 			void OnMouseDown();

@@ -8,32 +8,36 @@ namespace BanZ
 		this->mass = 1.0f;
 	}
 
-	Circle::Circle(float radius) : radius(radius)
+	Circle::Circle(float radius,bool isTriggered) : radius(radius)
 	{
 		this->position = BanZ::VECTOR2(0.0f, 0.0f);
 		this->velocity = BanZ::VECTOR2(0.0f, 0.0f);
 		this->mass = 1.0f;
+		this->isTriggered = isTriggered;
 	}
 
-	Circle::Circle(float radius, BanZ::VECTOR2 position) : radius(radius)
+	Circle::Circle(float radius, BanZ::VECTOR2 position,bool isTriggered) : radius(radius)
 	{
 		this->position = position;
 		this->velocity = BanZ::VECTOR2(0.0f, 0.0f);
 		this->mass = 1.0f;
+		this->isTriggered = isTriggered;
 	}
 
-	Circle::Circle(float radius, BanZ::VECTOR2 position, BanZ::VECTOR2 velocity) : radius(radius)
+	Circle::Circle(float radius, BanZ::VECTOR2 position, BanZ::VECTOR2 velocity,bool isTriggered) : radius(radius)
 	{
 		this->position = position;
 		this->velocity = velocity;
 		this->mass = 1.0f;
+		this->isTriggered = isTriggered;
 	}
 
-	Circle::Circle(float radius, BanZ::VECTOR2 position, BanZ::VECTOR2 velocity, float mass) : radius(radius)
+	Circle::Circle(float radius, BanZ::VECTOR2 position, BanZ::VECTOR2 velocity, float mass,bool isTriggerd) : radius(radius)
 	{
 		this->position = position;
 		this->velocity = velocity;
 		this->mass = mass;
+		this->isTriggered = isTriggerd;
 	}
 
 	void Circle::Init()

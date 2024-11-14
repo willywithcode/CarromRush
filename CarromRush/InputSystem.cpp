@@ -25,9 +25,15 @@ void BanZ::InputSystem::OnMouseDown()
 void BanZ::InputSystem::OnMouseUp(const VECTOR2& moveDirection)
 {
     isDragging = false;  
+	
     auto banGame = BanGame::Get();
 	float force = banGame->Length(startDragPos - endDragPos);
-	selectedCircle->SetVelocity(moveDirection*force);
+	float scaledForce = (force / maxLine) * maxForce;
+	if (scaledForce > maxForce)
+	{
+		scaledForce = maxForce;
+	}
+	selectedCircle->SetVelocity(moveDirection*scaledForce);
 }
 
 
@@ -38,7 +44,13 @@ void BanZ::InputSystem::OnMouseMove(VECTOR2& moveDirection)
     VECTOR2 dragVector = mousePos - startDragPos;
 
     VECTOR2 reverseDragVector = -dragVector;
-	endDragPos = startDragPos+reverseDragVector;
+	float lineLength = banGame->Length(reverseDragVector);
+	if (lineLength > maxLine)
+	{
+		reverseDragVector = banGame->Normalize(reverseDragVector) * maxLine;
+	}
+
+	endDragPos = startDragPos + reverseDragVector;
     banGame->DrawLine(selectedCircle->GetPosition(), endDragPos, 10.0f, 0, COLOR::GREEN);
 	moveDirection = banGame->Normalize(reverseDragVector);
 }
