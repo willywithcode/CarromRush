@@ -24,6 +24,12 @@ void sceneInit()
 	float coinRadius = 15.0f;
 	ActorManager::getInstance()->Init();
     Circle* circle1 = new Striker(25.0f, VECTOR2(300,100));
+
+    // GameEngine todo 1
+    auto temp = dynamic_cast<Striker*>(circle1);
+    temp->LoadSprite("../Data/Images/cocai_fix.png");
+    temp->SetEffect(BanGame::Get()->CreateSprite("../Data/Images/cocai_effect_fix.png"));
+
 	ActorManager::getInstance()->PushActor(circle1);
 	InputSystem::getInstance()->SetSelectedCircle(circle1);
 

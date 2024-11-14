@@ -21,6 +21,9 @@ namespace BanZ
 	protected:
 		VECTOR2 position;
 		VECTOR2 velocity;
+		// GameEngine todo 1
+		float angle;
+
 		float mass;
 		bool isTriggered;
 	};
