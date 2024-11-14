@@ -9,6 +9,5 @@ public:
 	QueenCoin(float radius, BanZ::VECTOR2 position, BanZ::VECTOR2 velocity);
 	QueenCoin(float radius, BanZ::VECTOR2 position, BanZ::VECTOR2 velocity, float mass);
 	void Render() override;
-	void OnTriggeredEnter(BanZ::ActorObject* actor) override;
 };
 
