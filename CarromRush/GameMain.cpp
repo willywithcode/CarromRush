@@ -1,4 +1,4 @@
-#pragma comment(lib, "lib/GameEngine.lib")
+﻿#pragma comment(lib, "lib/GameEngine.lib")
 #include "BanGame.h"
 #include "ActorManager.h"
 #include "Circle.h"
@@ -7,6 +7,7 @@
 #include "InputSystem.h"
 #include "WhiteCoin.h"
 #include "BlackCoin.h"
+#include "RedCoin.h"
 #include "Striker.h"
 #include "Hole.h"
 #include "CarromBoard.h"
@@ -33,22 +34,29 @@ void sceneInit()
 	ActorManager::getInstance()->PushActor(circle1);
 	InputSystem::getInstance()->SetSelectedCircle(circle1);
 
-    VECTOR2 startPos(300, 300);
-    float distance = coinRadius*2;
+    float distance = coinRadius * 2;
+    bool isBlack = false;
+    VECTOR2 centerPos(360, 360);
+    Circle* redCoin = new RedCoin(coinRadius, centerPos);
+    ActorManager::getInstance()->PushActor(redCoin);
 
-    int rows = 4; 
-    int index = 0;
-	bool isBlack = false;
-    for (int i = 0; i < rows; ++i) {
-        int numCircles = i + 1; 
-        float offsetX = -distance * (numCircles - 1) / 2.0f;
-        for (int j = 0; j < numCircles; ++j) {
-            VECTOR2 pos = startPos + VECTOR2(offsetX + j * distance, i * distance);
-			Circle* circle = nullptr;
-			if (isBlack) circle = new BlackCoin(coinRadius, pos);
-			else circle = new WhiteCoin(coinRadius, pos);
-			isBlack = !isBlack;
-            ActorManager::getInstance()->PushActor(circle);
+    for (int layer = 1; layer <= 3; ++layer) {
+        int numCoins = layer * 6;
+        float angleStep = 360.0f / numCoins;
+
+        for (int i = 0; i < numCoins; ++i) {
+            float angle = i * angleStep;
+            float radian = angle * (3.14159265359f / 180.0f);
+            VECTOR2 pos = centerPos + VECTOR2(cos(radian), sin(radian)) * distance * layer;
+
+            Circle* coin = nullptr;
+            if (isBlack)
+                coin = new BlackCoin(coinRadius, pos);
+            else
+                coin = new WhiteCoin(coinRadius, pos);
+
+            isBlack = !isBlack;
+            ActorManager::getInstance()->PushActor(coin);
         }
     }
     
