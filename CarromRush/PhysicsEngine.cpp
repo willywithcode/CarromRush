@@ -78,8 +78,6 @@ namespace BanZ {
 	{
 		float dotProduct = BanGame::Get()->Dot(velocityCircle, collisionNormal);
 		velocityCircle = velocityCircle- collisionNormal * (2 * dotProduct);
-
-		velocityCircle *=(1-collidedDecelerationSpeed);
 	}
 	void PhysicsEngine::ProcessCollision()
 	{

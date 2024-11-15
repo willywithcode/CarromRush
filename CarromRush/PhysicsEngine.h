@@ -7,7 +7,6 @@ namespace BanZ
 	class PhysicsEngine : public BanZ::SingletonTemplate<PhysicsEngine>
 	{
 		float fixedDecelerationSpeed = 0.7f; 
-		float collidedDecelerationSpeed = 0.05f; 
 	public: 
 		void Update(const float& elapsedTime);
 		bool CheckCollisionCircleVsCircle(const BanZ::VECTOR2& posCircle1, const BanZ::VECTOR2& posCircle2, const float& radiusCircle1, const float& radiusCircle2);
